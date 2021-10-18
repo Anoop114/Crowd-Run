@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - obstacle
+  - E1
+  - E2
+  - clone
   layers:
   - Default
   - TransparentFX

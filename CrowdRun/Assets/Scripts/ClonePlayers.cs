@@ -3,6 +3,7 @@ using UnityEngine;
 public class ClonePlayers : MonoBehaviour
 {
     [Header("Reference")]
+    public GameObject deleteClone;
     public GameObject playerAttractor;
     public GameObject player;
     
@@ -26,14 +27,16 @@ public class ClonePlayers : MonoBehaviour
             playerAttractor.SetActive(true);
             if(multiply)
             {
+                Handheld.Vibrate();
                 palyerCloning.ClonePlayer_Multiply(count);
             }
             if(add)
             {
+                Handheld.Vibrate();
                 palyerCloning.ClonePlayer_Sum(count);
             }
             playerAttractor.SetActive(false);
-            Destroy(gameObject);
+            Destroy(deleteClone);
         }
     }
 }

@@ -25,7 +25,7 @@ public class CloningAction : MonoBehaviour
         {
             transformPlayerX = playerTransform.position.x+Random.Range(-0.2f,0.2f);
             transformPlayerY = playerTransform.position.y;
-            transformPlayerZ = playerTransform.position.z+Random.Range(-0.2f,0.2f);
+            transformPlayerZ = playerTransform.position.z+Random.Range(0.05f,0.3f);
             transformPlayer = new Vector3(transformPlayerX,transformPlayerY,transformPlayerZ);
             GameObject childObject = Instantiate(clonePlayer,transformPlayer, Quaternion.identity) as GameObject;
             childObject.transform.parent = parentObject.transform;
@@ -39,7 +39,7 @@ public class CloningAction : MonoBehaviour
         {
             transformPlayerX = playerTransform.position.x+Random.Range(-0.2f,0.2f);
             transformPlayerY = playerTransform.position.y;
-            transformPlayerZ = playerTransform.position.z+Random.Range(-0.2f,0.2f);
+            transformPlayerZ = playerTransform.position.z+Random.Range(0.05f,0.3f);
             transformPlayer = new Vector3(transformPlayerX,transformPlayerY,transformPlayerZ);
             GameObject childObject = Instantiate(clonePlayer,transformPlayer, Quaternion.identity) as GameObject;
             childObject.transform.parent = parentObject.transform;
