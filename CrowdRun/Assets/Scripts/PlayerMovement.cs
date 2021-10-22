@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 0.25f;
     public float swipeSpeed = 10f;
     public float dragSpeed = 5f;
+    public bool IsRunning = true;
 
     //private
     private Transform localTransform;
@@ -35,24 +36,27 @@ public class PlayerMovement : MonoBehaviour
         {
             LooseGame();
         }
-        else
-        if(Input.GetMouseButton(0))
+        if(IsRunning)
         {
-            mousePos = mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y,dragSpeed));
+            if(Input.GetMouseButton(0))
+            {
+                mousePos = mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y,dragSpeed));
 
-            float xDifference = mousePos.x - lastMousePos.x;
-            newMousePos.x = localTransform.position.x + xDifference*swipeSpeed*Time.deltaTime;
-            newMousePos.x = Mathf.Clamp(newMousePos.x, -0.4f, 0.4f);
-            newMousePos.y = localTransform.position.y;
-            newMousePos.z = localTransform.position.z;
+                float xDifference = mousePos.x - lastMousePos.x;
+                newMousePos.x = localTransform.position.x + xDifference*swipeSpeed*Time.deltaTime;
+                newMousePos.x = Mathf.Clamp(newMousePos.x, -0.4f, 0.4f);
+                newMousePos.y = localTransform.position.y;
+                newMousePos.z = localTransform.position.z;
+            
+                localTransform.position = newMousePos + localTransform.forward * speed * Time.deltaTime;
+                lastMousePos = mousePos;
+            }
+            else
+            {
+                localTransform.position += Vector3.forward * Time.deltaTime * speed;
+            }
+        }
         
-            localTransform.position = newMousePos + localTransform.forward * speed * Time.deltaTime;
-            lastMousePos = mousePos;
-        }
-        else
-        {
-            localTransform.position += Vector3.forward * Time.deltaTime * speed;
-        }
     }
     private void LooseGame()
     {
